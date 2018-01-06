@@ -3,6 +3,7 @@
 Sample Project Facebook Albums App
 
 Feature on this project :
+--------------
 
 - Login connect with facebook  account
 - get Information (first name- last name) facebook account
@@ -13,7 +14,7 @@ Feature on this project :
 
 I build Facebook app in my Facebook developer for authentication and  permission to get pictures.
 
-Pre-requisites
+Pre-requisites :
 --------------
 
 - Android SDK 23
@@ -21,6 +22,12 @@ Pre-requisites
 - Android Support Repository
 
 App Screenshot :
+--------------
 
+<p>
+<img src="https://github.com/aounzou/FaceBook_Albums/blob/master/app/src/main/res/drawable/11.png" height="400" alt="Screenshot"/> 
+<img src="https://github.com/aounzou/FaceBook_Albums/blob/master/app/src/main/res/drawable/22.png" height="400" alt="Screenshot"/> 
+<img src="https://github.com/aounzou/FaceBook_Albums/blob/master/app/src/main/res/drawable/33.png" height="400" alt="Screenshot"/> 
+<img src="https://github.com/aounzou/FaceBook_Albums/blob/master/app/src/main/res/drawable/44.png" height="400" alt="Screenshot"/> 
 
 </p>
