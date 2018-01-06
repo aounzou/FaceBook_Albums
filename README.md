@@ -16,8 +16,8 @@ I build Facebook app in my Facebook developer for authentication and  permission
 Pre-requisites
 --------------
 
-- Android SDK 26
-- Android Build Tools v26.0.1
+- Android SDK 23
+- Android Build Tools v26.0.2
 - Android Support Repository
 
 App Screenshot :
