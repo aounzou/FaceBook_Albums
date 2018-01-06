@@ -13,13 +13,14 @@ Feature on this project :
 
 I build Facebook app in my Facebook developer for authentication and  permission to get pictures.
 
+Pre-requisites
+--------------
+
+- Android SDK 26
+- Android Build Tools v26.0.1
+- Android Support Repository
+
 App Screenshot :
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/farizdotid/mahasiswa-app/master/screenshot/device-2017-05-13-224616.png" width="250" height="400" />
-   <img src="https://raw.githubusercontent.com/farizdotid/mahasiswa-app/master/screenshot/device-2017-05-13-224648.png" width="250" height="400" />
-   <img src="https://raw.githubusercontent.com/farizdotid/mahasiswa-app-android/master/screenshot/device-2017-08-08-165204.png" width="250" height="400" />
-    <img src="https://raw.githubusercontent.com/farizdotid/mahasiswa-app-android/master/screenshot/device-2017-08-08-165225.png" width="250" height="400" />
-     <img src="https://raw.githubusercontent.com/farizdotid/mahasiswa-app-android/master/screenshot/device-2017-08-08-165307.png" width="250" height="400" />
-      <img src="https://raw.githubusercontent.com/farizdotid/mahasiswa-app-android/master/screenshot/device-2017-08-08-165319.png" width="250" height="400" />
+
 </p>
