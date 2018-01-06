@@ -3,6 +3,7 @@ package com.amine.hiddenfoundrs.login;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,11 +18,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import com.amine.hiddenfoundrs.idAlbums.AlbumIdActivity;
+import com.amine.hiddenfoundrs.adapters.JSONParser;
 import com.amine.hiddenfoundrs.adapters.ImageHelper;
 
 import com.amine.hiddenfoundrs.R;
-
+import com.amine.hiddenfoundrs.model.IdAlbum;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookAuthorizationException;
@@ -69,6 +71,7 @@ public class FacebookFragment extends Fragment{
     private CallbackManager callbackManager;
     private ProfileTracker profileTracker;
     private ShareDialog shareDialog;
+    public static ArrayList<IdAlbum> albumsId = new ArrayList<IdAlbum>();
 
     private FacebookCallback<Sharer.Result> shareCallback = new FacebookCallback<Sharer.Result>() {
         @Override
@@ -232,6 +235,146 @@ public class FacebookFragment extends Fragment{
 
 
 
+
+
+
+
+
+
+                GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(),
+
+
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(
+                                    JSONObject object,
+                                    GraphResponse response) {
+                                if (object != null) {
+                                    Log.d("Flogin", object.toString());
+                                    String name = JSONParser.getName(object);
+                                    String id = JSONParser.getId(object);
+                                    String album=JSONParser.getAlbums(object);
+
+
+
+
+                                     albumsId = JSONParser.getAlbumsId(album);
+
+
+                                    String s ="Name : "+name+"\n";
+                                    s +="Id : "+id+"\n";
+                                    s +="albumsId : "+"\n";
+                                    s+="albums :"+album+"\n";
+                                    idUser=id+"";
+
+                                    for(int i = 0; i < albumsId.size(); i++) {
+                                        String p="";
+
+                                        p += ((i + 1) + ". " + albumsId.get(i).getDateCreation()).toString() + "\n";
+                                            //GetFacebookImages(albumsId.get(i));
+                                         /*  Toast t = Toast.makeText(getActivity(), p, Toast.LENGTH_LONG);
+                                            t.show();*/
+
+                                    }
+
+
+                                    Intent mIntent=new Intent(getActivity(),AlbumIdActivity.class);
+                                    Bundle arg=new Bundle();
+                                    arg.putSerializable("albumsId",(Serializable)albumsId );
+                                    mIntent.putExtra("BUNDLE",arg);
+
+
+
+                                    startActivity(mIntent);
+
+
+
+
+/*
+                                    Toast t = Toast.makeText(getActivity(),s, Toast.LENGTH_LONG);
+                                    t.show();
+                                    */
+                                }
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                // parameters.putString("fields", "id,name,picture.type(album),count,link,favorite_athletes,favorite_teams");
+
+                parameters.putString("fields", "id,name,albums,link");
+                request.setParameters(parameters);
+                request.executeAsync();
+
+
+
+
+
+/*
+                new GraphRequest(
+                        AccessToken.getCurrentAccessToken(),  //your fb AccessToken
+                        "/" + AccessToken.getCurrentAccessToken().getUserId() + "/albums",//user id of login user
+                        null,
+                        HttpMethod.GET,
+                        new GraphRequest.Callback() {
+                            public void onCompleted(GraphResponse response) {
+                                Log.d("TAG", "Facebook Albums: " + response.toString());
+
+                                    if (response.getError() == null) {
+                                        JSONObject joMain = response.getJSONObject(); //convert GraphResponse response to JSONObject
+                                        if (joMain.has("data")) {
+                                            JSONArray jaData = joMain.optJSONArray("data"); //find JSONArray from JSONObject
+                                            Toast p = Toast.makeText(getActivity(), jaData.toString(), Toast.LENGTH_LONG);
+                                            p.show();
+                                        }
+                                    } else
+                                        Log.d("Test", response.getError().toString());
+
+
+                            }
+                        }
+                ).executeAsync();
+
+
+                new GraphRequest(
+                        AccessToken.getCurrentAccessToken(),
+                        "/me/albums",
+                        null,
+                        HttpMethod.GET,
+                        new GraphRequest.Callback() {
+                            public void onCompleted(GraphResponse response) {
+
+                                Toast p = Toast.makeText(getActivity(), response.toString(), Toast.LENGTH_LONG);
+                                p.show();
+
+                            Log.d("token is","Token is"+   AccessToken.getCurrentAccessToken());
+
+/*
+                                String albumID = null;
+                                try{
+                                    JSONObject json = response.getJSONObject();
+                                    JSONArray jarray = json.getJSONArray("data");
+
+                                    Toast p = Toast.makeText(getActivity(),jarray.toString(), Toast.LENGTH_LONG);
+                                    p.show();
+
+                                    for(int i = 0; i < jarray.length(); i++) {
+                                        JSONObject oneAlbum = jarray.getJSONObject(i);
+                                        //get albums id
+                                        if (oneAlbum.getString("name").equals("Profile Pictures")) {
+                                            albumID = oneAlbum.getString("id");
+                                        }
+
+                                    }
+                                }
+                                catch(JSONException e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                ).executeAsync();
+
+
+
+*/
 
 
 
